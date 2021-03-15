@@ -1,6 +1,5 @@
-# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
-
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Friendship Invitations', type: :feature do
   before(:each) do
     @first_user = User.create(name: 'first', email: 'first@first.com', password: 'password')
