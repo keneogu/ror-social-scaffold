@@ -13,11 +13,13 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  # rubocop:disable all
   def friends
     friends_array = friendships.map { |f| f.friend if f.confirmed }
-    inverse_friends_array = inverse_friendships.map { |f| f.user if f.confirmed }
-    (friends_array + inverse_friends_array).compact
+    friends_array + inverse_friendships.map { |f| f.user if f.confirmed }
+    friends_array.compact
   end
+  # rubocop:disable all
 
   # Users who have yet to confirm friend requests
   def pending_friends
