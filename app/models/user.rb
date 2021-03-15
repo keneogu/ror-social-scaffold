@@ -28,12 +28,18 @@ class User < ApplicationRecord
   def friend_requests
     inverse_friendships.map { |f| f.user if !f.confirmed }.compact
   end
+  
+  def reject_friend(user)
+    friendship = inverse_friendships.find { |f| f.user == user }
+    friendship.destroy
+  end
 
   # To confirm a friend request
   def confirm_friend(user)
     friendship = inverse_friendships.find { |f| f.user == user }
     friendship.confirmed = true
     friendship.save
+    # Friendship.create!(friend_id: user.id, user_id: id, confirmed: true)
   end
 
   # Check to see if a given user is a friend
