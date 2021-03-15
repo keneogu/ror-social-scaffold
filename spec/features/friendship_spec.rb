@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.feature 'Friendship Invitations', type: :feature do
@@ -38,6 +39,5 @@ RSpec.feature 'Friendship Invitations', type: :feature do
     click_on 'Accept'
     expect(@first_user.friend?(@second_user)).to eq(true)
   end
-
-
 end
+# rubocop:enable Metrics/BlockLength
