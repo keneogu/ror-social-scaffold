@@ -31,7 +31,7 @@ TBA
 
 - Clone the repo `https://github.com/keneogu/ror-social-scaffold.git`
 - `cd` into the project
-- Run `git pull origin friendship-v1`
+- Run `git pull origin friendship_v2`
 - Run `bundle install`
 - Run `rails db:create` and `rails db:migrate`
 - Run `rails s` and visit `localhost:3000`
