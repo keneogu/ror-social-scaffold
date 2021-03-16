@@ -28,4 +28,17 @@ module ApplicationHelper
       link_to('Invite to Friendship', add_path(user_id: user.id), method: :post)
     end
   end
+
+  # def mutual_friends(usr)
+  #   a = []
+  #   a1 = current_user.friends
+  #   a2 = usr.friends
+  #
+  #   a1.each do |f|
+  #     a2.each do |r|
+  #       a << r if f == r
+  #     end
+  #   end
+  #   a
+  # end
 end

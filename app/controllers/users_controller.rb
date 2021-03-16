@@ -8,7 +8,25 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
+
+    my_friends = current_user.friends
+    user_friends = @user.friends
+
+    @mutual_friends = my_friends & user_friends
   end
+
+  # def mutual_friends(usr)
+  #   a = []
+  #   a1 = current_user.friends
+  #   a2 = usr.friends
+  #
+  #   a1.each do |f|
+  #     a2.each do |r|
+  #       a << r if f == r
+  #     end
+  #   end
+  #   a
+  # end
 
   def update
     @user = User.find(params[:user_id])
