@@ -1,4 +1,23 @@
 
+# Social media app
+
+> In this project, users can sign up and create posts. Moreover it inherits the core functionality of social media sites
+> such as facebook.com. Users can send request to one another and view the posts written by the user or from the user's
+> friend list.
+
+## Features
+
+- Allow users to send a friend request to other users
+- Multiple request states, such as,
+    - Invite to friendship
+    - Accept friendship
+    - Reject friendship
+    - Cancel friend request sent
+    - Remove friend from the list
+- Show posts written by the user and by the user's friends
+- List all mutual friends of a user
+- Followed TDD
+- End to end testing
 
 ## Built With
 
