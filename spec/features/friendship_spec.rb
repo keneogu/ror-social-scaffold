@@ -25,7 +25,7 @@ RSpec.feature 'Friendship Invitations', type: :feature do
     click_on 'Invite to Friendship'
   end
 
-  scenario 'should accept or accept friend request' do
+  scenario 'should accept or reject friend request' do
     visit users_path
     click_on 'Invite to Friendship'
     click_on 'Sign out'

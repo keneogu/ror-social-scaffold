@@ -17,9 +17,9 @@
   <br/>
   <br/>
 
-  <% if @user != current_user %>
+  <% if mutual_friends_list(@user) %>
     <h3>Mutual Friends:</h3>
-    <% @mutual_friends.each do |mf| %>
+    <% mutual_friends_list(@user).each do |mf| %>
       <h5><%= mf.name %></h5>
     <% end %>
   <% end %>
@@ -34,3 +34,4 @@
     </ul>
   </article>
 </section>
+
