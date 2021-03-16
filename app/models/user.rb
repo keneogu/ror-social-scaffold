@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -13,20 +11,19 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
-  # rubocop:disable all
-  def friends
-    friends_array = friendships.map { |f| f.friend if f.confirmed }
-    friends_array + inverse_friendships.map { |f| f.user if f.confirmed }
-    friends_array.compact
-  end
-  # rubocop:enable all
+  has_many :confirmed_friendships, -> { where confirmed: true }, class_name: 'Friendship'
+  has_many :friends, through: :confirmed_friendships
 
-  # Users who have yet to confirm friend requests
-  def pending_friends
-    friendships.map { |f| f.friend unless f.confirmed }.compact
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
+  has_many :inverted_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friend_requests, through: :inverted_friendships
+
+  def friends_and_own_posts
+    Post.where(user: (friends.to_a << self))
   end
 
-  # Users who have requested to be friends
   def friend_requests
     inverse_friendships.map { |f| f.user unless f.confirmed }.compact
   end
@@ -36,15 +33,11 @@ class User < ApplicationRecord
     friendship.destroy
   end
 
-  # To confirm a friend request
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |f| f.user == user }
-    friendship.confirmed = true
-    friendship.save
-    Friendship.create(friend_id: user.id, user_id: id, confirmed: true)
+  def confirm_friend
+    update_attributes(confirmed: true)
+    Friendship.create!(friend_id: user_id, user_id: friend_id, confirmed: true)
   end
 
-  # Check to see if a given user is a friend
   def friend?(user)
     friends.include?(user)
   end
