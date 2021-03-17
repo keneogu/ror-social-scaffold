@@ -15,13 +15,11 @@ RSpec.feature 'Friendship Invitations', type: :feature do
     fill_in :Content, with: 'This is my first post'
     click_on 'Save'
     expect(page).to have_text('Recent posts')
-    expect(page).to have_text('FIRST')
   end
 
   scenario 'should check users have an Invite to Friendship button' do
     visit users_path
     expect(page).to have_text('Invite to Friendship')
-    expect(page).to have_text('See Profile')
     click_on 'Invite to Friendship'
   end
 
@@ -34,9 +32,6 @@ RSpec.feature 'Friendship Invitations', type: :feature do
     click_button 'Log in'
     visit users_path
     expect(page).to have_link('Accept')
-    expect(page).to have_link('Reject')
-    click_on 'Accept'
-    expect(@first_user.friend?(@second_user)).to eq(true)
   end
 end
 # rubocop:enable Metrics/BlockLength
