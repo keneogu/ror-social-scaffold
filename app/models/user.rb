@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 20 }
-
+  scope :birth, -> { where('dob > 2020')}
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -22,25 +22,5 @@ class User < ApplicationRecord
 
   def friends_and_own_posts
     Post.where(user: (friends.to_a << self))
-  end
-
-  def friend_requests
-    inverse_friendships.map { |f| f.user unless f.confirmed }.compact
-  end
-
-  def reject_friend(user)
-    friendship = inverse_friendships.find { |f| f.user == user }
-    friendship.destroy
-  end
-
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |f| f.user == user }
-    friendship.confirmed = true
-    friendship.save
-    Friendship.create(friend_id: user.id, user_id: id, confirmed: true)
-  end
-
-  def friend?(user)
-    friends.include?(user)
   end
 end

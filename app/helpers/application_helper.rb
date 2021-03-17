@@ -40,4 +40,12 @@ module ApplicationHelper
   def user_name
     current_user&.name&.upcase
   end
+
+  def notice_message
+    notice if notice.present?
+  end
+
+  def alert_message
+    alert if alert.present?
+  end
 end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   post 'add', to: 'friendships#create'
-  put 'accept', to: 'users#update'
-  delete 'reject', to: 'users#destroy'
+  put 'accept', to: 'friendships#update'
+  delete 'reject', to: 'friendships#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

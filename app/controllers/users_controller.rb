@@ -13,21 +13,4 @@ class UsersController < ApplicationController
     @mutual_friends = my_friends & user_friends
   end
 
-  def update
-    @user = User.find(params[:user_id])
-    if current_user.confirm_friend(@user)
-      redirect_to users_path, notice: 'Friend request Accepted'
-    else
-      redirect_to users_path, alert: 'Error!!! '
-    end
-  end
-
-  def destroy
-    @user = User.find(params[:user_id])
-    if current_user.reject_friend(@user)
-      redirect_to users_path, notice: 'Friend request rejected'
-    else
-      redirect_to users_path, alert: 'Error!!! '
-    end
-  end
 end

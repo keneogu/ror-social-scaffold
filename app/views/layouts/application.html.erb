@@ -22,17 +22,13 @@
       <%= user_name %>
     </nav>
 
-    <% if notice.present? %>
-      <div class="notice">
-        <p> <%= notice %> </p>
-      </div>
-    <% end %>
+    <div class="notice">
+      <%= notice_message %>
+    </div>
 
-    <% if alert.present? %>
-      <div class="alert">
-        <p> <%= alert %> </p>
-      </div>
-    <% end %>
+    <div class="alert">
+      <%= alert_message %>
+    </div>
 
     <main class="main">
       <%= yield %>
