@@ -12,7 +12,7 @@ module UserHelper
   end
 
   def no_mutual_friends(user)
-    "You and #{user.name} have no common friends." if @mutual_friends.size.zero?
+    "You and #{user.name} have no common friends." if user != current_user && @mutual_friends.size.zero?
   end
 
   def mutual_friends_list(user)
