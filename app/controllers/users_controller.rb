@@ -12,5 +12,4 @@ class UsersController < ApplicationController
     user_friends = @user.friends
     @mutual_friends = my_friends & user_friends
   end
-
 end

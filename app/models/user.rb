@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 20 }
-  scope :birth, -> { where('dob > 2020')}
+
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -22,5 +22,9 @@ class User < ApplicationRecord
 
   def friends_and_own_posts
     Post.where(user: (friends.to_a << self))
+  end
+
+  def friend?(user)
+    friends.include?(user)
   end
 end
