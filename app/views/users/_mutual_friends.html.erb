@@ -1,0 +1,12 @@
+<h3>
+  <%= mutual_friends_heading(user) %>
+</h3>
+<small>
+  <%= no_mutual_friends(user) %>
+</small>
+
+<% mutual_friends_list(user).each do |mf| %>
+  <h5>
+    <%= mf.name %>
+  </h5>
+<% end %>

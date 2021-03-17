@@ -9,20 +9,12 @@
   <br/>
   <br/>
 
-  <h3>Friend List:</h3>
-  <% @user.friends.each do |f| %>
-    <h5><%= f.name %></h5>
-  <% end %>
+  <%= render 'friends', user: @user %>
 
   <br/>
   <br/>
 
-  <% if mutual_friends_list(@user) %>
-    <h3>Mutual Friends:</h3>
-    <% mutual_friends_list(@user).each do |mf| %>
-      <h5><%= mf.name %></h5>
-    <% end %>
-  <% end %>
+  <%= render 'mutual_friends', user: @user %>
 
   <br/>
   <br/>
