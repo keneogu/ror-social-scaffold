@@ -26,7 +26,7 @@
 
 ## Live Demo
 
-TBA
+[Live Demo](https://guarded-gorge-71409.herokuapp.com/users/sign_in)
 
 ## Getting Started
 
@@ -67,10 +67,6 @@ gem install rspec
 ```bash
 rspec
 ```
-
-### Deployment
-
-TBA
 
 ## Authors
 
