@@ -6,10 +6,18 @@
 
   <%= show_invite_to_friendship(@user) %>
 
-  <h3>Friend List:</h3>
-  <% @user.friends.each do |f| %>
-    <h5><%= f.name %></h5>
-  <% end %>
+  <br/>
+  <br/>
+
+  <%= render 'friends', user: @user %>
+
+  <br/>
+  <br/>
+
+  <%= render 'mutual_friends', user: @user %>
+
+  <br/>
+  <br/>
 
   <article class="timeline">
     <h3>Recent posts:</h3>
@@ -18,3 +26,4 @@
     </ul>
   </article>
 </section>
+
